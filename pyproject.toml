@@ -1,6 +1,6 @@
 [project]
 name = "icebert-pos"
-version = "0.1.0"
+dynamic = ["version"]  # managed by setuptools-scm
 description = "A package for interacting with the IceBERT PoS model(s)."
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
@@ -19,10 +19,12 @@ dev = [
     "ruff",
 ]
 
+[tool.setuptools_scm]
+# Use git tags for versioning
+
 [tool.ruff]
 line-length = 120
 
-# "some" build system
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=64", "setuptools-scm>=8"]
 build-backend = "setuptools.build_meta"
