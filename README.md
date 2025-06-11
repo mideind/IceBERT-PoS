@@ -6,7 +6,6 @@ A high-level Python interface for PoS tagging Icelandic text using the [IceBERT-
 - Add proper installation instructions
 - Add license information
 - Proper device handling (GPU) for tensors
-- Github actions for testing
 - git scm versioning
 
 ## Installation

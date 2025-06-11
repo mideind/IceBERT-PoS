@@ -41,13 +41,9 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-huggingface-
 
-      - name: Install dependencies
-        run: |
-          uv sync --extra dev --frozen
-
       - name: Run tests
         run: |
-          uv run pytest tests/ -v
+          uv run --locked pytest tests/ -v
         env:
           HF_HUB_CACHE: ~/.cache/huggingface
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
@@ -74,18 +70,14 @@ jobs:
             ${{ runner.os }}-uv-lint-
             ${{ runner.os }}-uv-
 
-      - name: Install dependencies
+      - name: Check code with ruff
         run: |
-          uv sync --extra dev --frozen
-
-      - name: Check code ruff
-        run: |
-          uv run ruff check .
+          uv run --locked ruff check .
 
       - name: Check imports with ruff
         run: |
-          uv run ruff check --select I .
+          uv run --locked ruff check --select I .
 
       - name: Check code formatting with ruff
         run: |
-          uv run ruff format --check .
+          uv run --locked ruff format --check .
