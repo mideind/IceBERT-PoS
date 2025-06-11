@@ -41,6 +41,7 @@ jobs:
           uv run pytest tests/ -v
         env:
           HF_HUB_CACHE: ~/.cache/huggingface
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
 
   lint:
     runs-on: ubuntu-latest
