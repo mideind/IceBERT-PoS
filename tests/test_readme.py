@@ -6,6 +6,7 @@ import re
 import shlex
 
 import pytest
+
 from icebert_pos.cli import create_parser, process_cli_request
 
 

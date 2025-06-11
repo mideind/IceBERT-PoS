@@ -8,6 +8,8 @@ import sys
 from unittest.mock import Mock, patch
 
 import pytest
+from rich.text import Text
+
 from icebert_pos import TaggedToken
 from icebert_pos.cli import (
     CLIError,
@@ -18,7 +20,6 @@ from icebert_pos.cli import (
     process_cli_request,
     run_pos_tagging,
 )
-from rich.text import Text
 
 
 @pytest.fixture

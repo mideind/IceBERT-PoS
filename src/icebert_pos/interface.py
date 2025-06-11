@@ -4,7 +4,6 @@
 import logging
 from dataclasses import dataclass
 
-
 import tokenizer
 import torch
 from torch.nn.utils.rnn import pad_sequence
