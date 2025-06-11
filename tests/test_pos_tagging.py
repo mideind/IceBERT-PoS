@@ -3,7 +3,6 @@ Test cases for IceBERT POS tagging interface.
 """
 
 from dataclasses import asdict
-from typing import List
 
 from icebert_pos import TaggedToken, pos_tag_text
 
@@ -13,7 +12,7 @@ def _run_pos_tagging_test(text, expected, model, tokenizer):
     _compare_results(expected, results)
 
 
-def _compare_results(expected: List[List[dict]], results: List[List[TaggedToken]]):
+def _compare_results(expected: list[list[dict]], results: list[list[TaggedToken]]):
     try:
         assert expected == [[asdict(token) for token in sentence] for sentence in results]
     except AssertionError as e:

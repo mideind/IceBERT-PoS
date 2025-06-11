@@ -19,7 +19,6 @@ from .interface import (
     segment_text_to_sentences,
 )
 
-__version__ = "0.1.0"
 __all__ = [
     "TaggedToken",
     "Token",

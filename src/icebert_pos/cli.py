@@ -5,7 +5,7 @@ import json
 import logging
 import sys
 from dataclasses import asdict
-from typing import Any, Dict, List, Optional
+from typing import Any
 
 from rich.console import Console
 from rich.text import Text
@@ -62,7 +62,7 @@ def load_model_and_tokenizer(model_name: str):
         raise CLIError(f"Failed to load model '{model_name}': {e}")
 
 
-def format_output_as_text(text: str, results: List[List[TaggedToken]], only_category: bool) -> Text:
+def format_output_as_text(text: str, results: list[list[TaggedToken]], only_category: bool) -> Text:
     """Create rich-formatted text with POS tags in green brackets."""
     formatted_text = Text()
     current_pos = 0
@@ -96,7 +96,7 @@ def format_output_as_text(text: str, results: List[List[TaggedToken]], only_cate
     return formatted_text
 
 
-def format_output_as_json(results: List[List[TaggedToken]]) -> str:
+def format_output_as_json(results: list[list[TaggedToken]]) -> str:
     """Format results as JSON string."""
     results_json = [[asdict(token) for token in sentence] for sentence in results]
     return json.dumps(results_json, ensure_ascii=False, indent=2)
@@ -104,7 +104,7 @@ def format_output_as_json(results: List[List[TaggedToken]]) -> str:
 
 def run_pos_tagging(
     text: str, model, tokenizer, batch_size: int = 1, split_composite_tokens: bool = True, truncate: bool = False
-) -> List[List[TaggedToken]]:
+) -> list[list[TaggedToken]]:
     """Run POS tagging with given parameters."""
     try:
         return pos_tag_text(text, model, tokenizer, batch_size, split_composite_tokens, truncate)
@@ -112,7 +112,7 @@ def run_pos_tagging(
         raise CLIError(f"POS tagging failed: {e}")
 
 
-def process_cli_request(args: argparse.Namespace, model=None, tokenizer=None) -> Dict[str, Any]:
+def process_cli_request(args: argparse.Namespace, model=None, tokenizer=None) -> dict[str, Any]:
     """
     Process CLI request and return results.
 
@@ -150,7 +150,7 @@ def setup_logging(debug: bool = False) -> None:
     logging.basicConfig(level=level, stream=sys.stderr)
 
 
-def main(argv: Optional[List[str]] = None) -> int:
+def main(argv: list[str] | None = None) -> int:
     """
     Main CLI entry point.
 

@@ -3,7 +3,7 @@
 
 import logging
 from dataclasses import dataclass
-from typing import List, Tuple
+
 
 import tokenizer
 import torch
@@ -25,7 +25,7 @@ class Token:
 class Sentence:
     """A sentence is a collection of tokens."""
 
-    tokens: List[Token]
+    tokens: list[Token]
 
 
 @dataclass
@@ -33,11 +33,11 @@ class TaggedToken(Token):
     """A Token with a PoS tag"""
 
     category: str
-    features: List[str]
+    features: list[str]
     ifd_tag: str
 
 
-def segment_text_to_sentences(text: str, split_composite_tokens: bool = True) -> List[Sentence]:
+def segment_text_to_sentences(text: str, split_composite_tokens: bool = True) -> list[Sentence]:
     """
     Segment text into sentences using classical tokenization.
 
@@ -58,8 +58,8 @@ def segment_text_to_sentences(text: str, split_composite_tokens: bool = True) ->
     # We rather ask for these composites and if split_composite_tokens=True we split on spaces in the loop below.
     tokenizer_tokens = list(tokenizer.tokenize(text, replace_composite_glyphs=False, with_annotation=True))
 
-    sentences: List[Sentence] = []
-    current_tokens: List[Token] = []
+    sentences: list[Sentence] = []
+    current_tokens: list[Token] = []
     absolute_pos = 0  # Track absolute position using tok.original lengths
 
     for tokenizer_token in tokenizer_tokens:
@@ -122,7 +122,7 @@ def segment_text_to_sentences(text: str, split_composite_tokens: bool = True) ->
 
 def prepare_sentence(
     sentence: Sentence, model, hf_tokenizer, truncate: bool = False
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     Prepare a single sentence for model prediction.
 
@@ -144,8 +144,8 @@ def prepare_sentence(
 
 
 def batch_sentences(
-    sentence_tensors: List[Tuple[torch.Tensor, torch.Tensor, torch.Tensor]], tokenizer
-) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
+    sentence_tensors: list[tuple[torch.Tensor, torch.Tensor, torch.Tensor]], tokenizer
+) -> tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     """
     Batch a list of sentence tensors into a single batch.
 
@@ -169,7 +169,7 @@ def predict_sentences(
     attention_mask,
     word_mask,
     model,
-) -> List[List[Tuple[str, List[str]]]]:
+) -> list[list[tuple[str, list[str]]]]:
     """
     Predict POS tags for batched sentences.
 
@@ -180,7 +180,7 @@ def predict_sentences(
         model: Pre-loaded IceBERT model
 
     Returns:
-        List of lists of (category, features) tuples for each word in each sentence
+        list of lists of (category, features) tuples for each word in each sentence
     """
     # Get predictions from the model
     predictions = model.predict_labels(input_ids, attention_mask, word_mask)
@@ -190,7 +190,7 @@ def predict_sentences(
 
 def pos_tag_text(
     text: str, model, hf_tokenizer, batch_size: int = 1, split_composite_tokens: bool = True, truncate: bool = False
-) -> List[List[TaggedToken]]:
+) -> list[list[TaggedToken]]:
     """
     POS tag text using classical tokenization and IceBERT model.
 
@@ -203,7 +203,7 @@ def pos_tag_text(
         truncate: Whether to truncate input sequences that exceed the model's maximum length. Defaults to False.
 
     Returns:
-        List of lists of TaggedToken objects, one list per sentence
+        list of lists of TaggedToken objects, one list per sentence
     """
     # Segment text into sentences
     sentences = segment_text_to_sentences(text, split_composite_tokens=split_composite_tokens)
