@@ -17,6 +17,9 @@ icebert-pos = "icebert_pos.cli:main"
 [project.optional-dependencies]
 dev = ["pytest>=7.0.0", "ruff"]
 
+[tool.ruff]
+line-length = 120
+
 # "some" build system
 [build-system]
 requires = ["setuptools"]

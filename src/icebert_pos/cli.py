@@ -29,14 +29,14 @@ def create_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--model-name", default="mideind/IceBERT-PoS", help="Model name or path (default: mideind/IceBERT-PoS)"
     )
-    
+
     # Create mutually exclusive group for output format
     output_group = parser.add_mutually_exclusive_group()
     output_group.add_argument(
         "--only-category", action="store_true", help="Return only POS categories instead of full IFD tags"
     )
     output_group.add_argument("--json", action="store_true", help="Return json output instead of plain text")
-    
+
     parser.add_argument(
         "--keep-composite-tokens",
         action="store_true",

@@ -12,7 +12,7 @@ from transformers import AutoModel, AutoTokenizer
 def model():
     """
     Load model once for all tests.
-    
+
     Using session scope to avoid reloading the model for each test file.
     This makes tests much faster when running the full suite.
     """
@@ -25,7 +25,7 @@ def model():
 def tokenizer():
     """
     Load tokenizer once for all tests.
-    
+
     Using session scope to avoid reloading the tokenizer for each test file.
     This makes tests much faster when running the full suite.
     """
@@ -36,7 +36,7 @@ def tokenizer():
 def readme_content():
     """
     Load README.md content once for all tests.
-    
+
     Using session scope to avoid re-reading the file for each test.
     """
     readme_path = Path(__file__).parent.parent / "README.md"
