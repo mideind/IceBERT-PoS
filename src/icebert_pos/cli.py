@@ -38,9 +38,9 @@ def create_parser() -> argparse.ArgumentParser:
     output_group.add_argument("--json", action="store_true", help="Return json output instead of plain text")
     
     parser.add_argument(
-        "--no-split-composite-tokens",
+        "--keep-composite-tokens",
         action="store_true",
-        help="Do not split composite tokens into individual tokens on whitespace (default: split them)",
+        help="Keep composite tokens as single tokens instead of splitting on whitespace (default: split them)",
     )
     parser.add_argument("--batch-size", type=int, default=1, help="Batch size for processing (default: 1)")
     parser.add_argument(
@@ -130,7 +130,7 @@ def process_cli_request(args: argparse.Namespace, model=None, tokenizer=None) ->
 
     # Run POS tagging
     results = run_pos_tagging(
-        args.text, model, tokenizer, args.batch_size, not args.no_split_composite_tokens, args.truncate
+        args.text, model, tokenizer, args.batch_size, not args.keep_composite_tokens, args.truncate
     )
 
     # Format output

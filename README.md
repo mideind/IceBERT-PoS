@@ -2,6 +2,13 @@
 
 A high-level Python interface for PoS tagging Icelandic text using the [IceBERT-PoS](https://huggingface.co/mideind/IceBERT-PoS) model with classical tokenization.
 
+## TODOs
+- Add proper installation instructions
+- Add license information
+- Proper device handling (GPU) for tensors
+- Github actions for testing
+- git scm versioning
+
 ## Installation
 
 ```bash
@@ -67,7 +74,7 @@ icebert-pos --json "Þetta er stutt sýnidæmi."
 icebert-pos "samskipta- og kynningarstýra"
 # 3 tokens:
 # samskipta-[kt] og[c] kynningarstýra[nven]
-icebert-pos --no-split-composite-tokens "samskipta- og kynningarstýra"
+icebert-pos --keep-composite-tokens "samskipta- og kynningarstýra"
 # 1 token:
 # samskipta- og kynningarstýra[nven]
 

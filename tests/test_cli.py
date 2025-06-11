@@ -53,7 +53,7 @@ def test_create_parser():
     assert args.json is False
     assert args.debug is False
     assert args.truncate is False
-    assert args.no_split_composite_tokens is False
+    assert args.keep_composite_tokens is False
 
 
 def test_parser_all_flags():
@@ -69,7 +69,7 @@ def test_parser_all_flags():
             "--batch-size",
             "5",
             "--truncate",
-            "--no-split-composite-tokens",
+            "--keep-composite-tokens",
             "--debug",
         ]
     )
@@ -80,7 +80,7 @@ def test_parser_all_flags():
     assert args.json is True
     assert args.debug is True
     assert args.truncate is True
-    assert args.no_split_composite_tokens is True
+    assert args.keep_composite_tokens is True
 
 
 def test_format_output_as_json(sample_results):
