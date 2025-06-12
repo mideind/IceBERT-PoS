@@ -3,16 +3,14 @@
 A high-level Python interface for PoS tagging Icelandic text using the [IceBERT-PoS](https://huggingface.co/mideind/IceBERT-PoS) model with classical tokenization.
 
 ## TODOs
-- Add proper installation instructions
 - Add license information
 - Proper device handling (GPU) for tensors
-- git scm versioning
 
 ## Installation
 
 ```bash
-TODO: Add proper installation instructions here.
-pip install git+...
+# This package is currently not available on PyPI, so you need to install it directly from the source repository.
+pip install git+ssh://git@github.com/mideind/IceBERT-PoS.git
 ```
 
 This will install the package with PyTorch.
