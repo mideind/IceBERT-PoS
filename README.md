@@ -10,10 +10,15 @@ A high-level Python interface for PoS tagging Icelandic text using the [IceBERT-
 
 ```bash
 # This package is currently not available on PyPI, so you need to install it directly from the source repository.
+
+# Without PyTorch (lighter, but model inference won't work)
 pip install git+ssh://git@github.com/mideind/IceBERT-PoS.git
+
+# With PyTorch support (required for model inference) - RECOMMENDED
+pip install "git+ssh://git@github.com/mideind/IceBERT-PoS.git[torch]"
 ```
 
-This will install the package with PyTorch.
+> **Note**: The `[torch]` extra is required for model inference, as PyTorch models need PyTorch to run. The default installation is only useful for development work that doesn't involve running the actual models.
 
 ## Features
 

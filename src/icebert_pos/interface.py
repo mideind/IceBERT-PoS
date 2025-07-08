@@ -1,12 +1,16 @@
 # Copyright (C) Miðeind ehf.
 # Simple POS tagging interface with classical tokenization
 
+from __future__ import annotations
+
 import logging
 from dataclasses import dataclass
+from typing import TYPE_CHECKING
 
 import tokenizer
-import torch
-from torch.nn.utils.rnn import pad_sequence
+
+if TYPE_CHECKING:
+    import torch
 
 logger = logging.getLogger(__name__)
 
@@ -154,6 +158,8 @@ def batch_sentences(
     Returns:
         Batched input tensors
     """
+    from torch.nn.utils.rnn import pad_sequence
+
     # Unzip the list of tuples into separate lists
     input_ids, attention_mask, word_mask = zip(*sentence_tensors, strict=True)
 

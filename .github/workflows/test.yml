@@ -35,7 +35,7 @@ jobs:
       - name: Run tests
         run: |
           # --locked ensures we use exact versions from uv.lock without updating
-          uv run --locked pytest tests/ -v
+          uv run --locked --extra torch pytest tests/ -v
         env:
           HF_HUB_CACHE: ~/.cache/huggingface
           HF_TOKEN: ${{ secrets.HF_TOKEN }}

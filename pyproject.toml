@@ -1,23 +1,23 @@
 [project]
 name = "icebert-pos"
-dynamic = ["version"]  # managed by setuptools-scm
+dynamic = ["version"] # managed by setuptools-scm
 description = "A package for interacting with the IceBERT PoS model(s)."
 readme = "README.md"
 requires-python = ">=3.10,<4.0"
 dependencies = [
     "tokenizer>=3.4.4,<4.0",
-    "transformers[torch]>=4.46.3,<5.0",
+    "transformers>=4.46.3,<5.0",
     "rich>=13.0.0,<14.0",
 ]
+
+[project.optional-dependencies]
+torch = ["transformers[torch]>=4.46.3,<5.0"]
 
 [project.scripts]
 icebert-pos = "icebert_pos.cli:main"
 
 [dependency-groups]
-dev = [
-    "pytest",
-    "ruff",
-]
+dev = ["pytest", "ruff"]
 
 [tool.setuptools_scm]
 # Use git tags for versioning
