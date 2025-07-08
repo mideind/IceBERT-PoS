@@ -175,6 +175,11 @@ source = { editable = "." }
 dependencies = [
     { name = "rich" },
     { name = "tokenizer" },
+    { name = "transformers" },
+]
+
+[package.optional-dependencies]
+torch = [
     { name = "transformers", extra = ["torch"] },
 ]
 
@@ -188,8 +193,10 @@ dev = [
 requires-dist = [
     { name = "rich", specifier = ">=13.0.0,<14.0" },
     { name = "tokenizer", specifier = ">=3.4.4,<4.0" },
-    { name = "transformers", extras = ["torch"], specifier = ">=4.46.3,<5.0" },
+    { name = "transformers", specifier = ">=4.46.3,<5.0" },
+    { name = "transformers", extras = ["torch"], marker = "extra == 'torch'", specifier = ">=4.46.3,<5.0" },
 ]
+provides-extras = ["torch"]
 
 [package.metadata.requires-dev]
 dev = [
