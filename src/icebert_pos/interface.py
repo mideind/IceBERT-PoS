@@ -158,7 +158,13 @@ def batch_sentences(
     Returns:
         Batched input tensors
     """
-    from torch.nn.utils.rnn import pad_sequence
+    try:
+        from torch.nn.utils.rnn import pad_sequence
+    except ModuleNotFoundError as e:
+        raise ImportError(
+            "The 'torch' library is required for this function. Please install it using "
+            "'pip install icebert-pos[torch]'."
+        ) from e
 
     # Unzip the list of tuples into separate lists
     input_ids, attention_mask, word_mask = zip(*sentence_tensors, strict=True)
