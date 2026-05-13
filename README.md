@@ -3,7 +3,6 @@
 A high-level Python interface for PoS tagging Icelandic text using the [IceBERT-PoS](https://huggingface.co/mideind/IceBERT-PoS) model with classical tokenization.
 
 ## TODOs
-- Add license information
 - Proper device handling (GPU) for tensors
 
 ## Installation
@@ -12,13 +11,26 @@ A high-level Python interface for PoS tagging Icelandic text using the [IceBERT-
 # This package is currently not available on PyPI, so you need to install it directly from the source repository.
 
 # Without PyTorch (lighter, but model inference won't work)
-pip install git+ssh://git@github.com/mideind/IceBERT-PoS.git
+# Allows you to control the PyTorch version
+pip install git+ssh://git@github.com/mideind/IceBERT-PoS.git@main  # Installs directly from main branch
 
 # With PyTorch support (required for model inference) - RECOMMENDED
-pip install "git+ssh://git@github.com/mideind/IceBERT-PoS.git[torch]"
+pip install "git+ssh://git@github.com/mideind/IceBERT-PoS.git[torch]"  # @main implied
 ```
 
-> **Note**: The `[torch]` extra is required for model inference, as PyTorch models need PyTorch to run. The default installation is only useful for development work that doesn't involve running the actual models.
+> **Note**: The `[torch]` extra is required for model inference. Then why package it separately? To avoid pinning to specific versions of PyTorch and allow the user to install the latest version compatible with their system.
+
+## Versioning
+
+Package versioning is done via Git tags. To install a specific version, use the `@` syntax:
+
+```bash
+pip install "git+ssh://git@github.com/mideind/IceBERT-PoS.git@<version>"
+```
+
+### Version History
+- `v0.3.0`: Loosen `transformers` version requirement from `>=4.46.3,<5.0` to `>=4.46.3,<6.0`. In other words, add support for `transformers` version `5`.
+- `v0.2.0`: First stable release
 
 ## Features
 
@@ -217,6 +229,6 @@ Token with POS tagging information (extends Token):
 When using the lower-level functions you can control more of the processing but will also need to handle device placement and batching manually.
 
 ## License
-TODO: Add license information here.
+MIT
 
 Copyright (C) Miðeind ehf.
